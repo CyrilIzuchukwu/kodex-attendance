@@ -21,7 +21,7 @@ class AdminDashboardController extends Controller
     //         $today->copy()->endOfWeek()
     //     ])->count();
     //     $latestToday      = Attendance::whereDate('date', $today)
-    //         ->orderBy('time_in', 'desc')
+    //         ->orderBy('time_in', 'asc')
     //         ->take(10)
     //         ->get();
 
@@ -45,13 +45,13 @@ class AdminDashboardController extends Controller
             $today->copy()->endOfWeek()
         ])->count();
         $latestToday    = Attendance::whereDate('date', $today)
-            ->orderBy('time_in', 'desc')->take(10)->get();
+            ->orderBy('time_in', 'asc')->take(10)->get();
 
         // Staff
         $totalStaff          = StaffAttendance::distinct('phone')->count('phone');
         $staffSignedToday    = StaffAttendance::whereDate('date', $today)->count();
         $staffLatestToday    = StaffAttendance::whereDate('date', $today)
-            ->orderBy('time_in', 'desc')->take(10)->get();
+            ->orderBy('time_in', 'asc')->take(10)->get();
 
         $staffSignedThisWeek = StaffAttendance::whereBetween('date', [
             $today->copy()->startOfWeek(),
@@ -90,7 +90,7 @@ class AdminDashboardController extends Controller
     {
         $date = $request->input('date', Carbon::today('Africa/Lagos')->toDateString());
         $attendances = Attendance::whereDate('date', $date)
-            ->orderBy('time_in', 'desc')
+            ->orderBy('time_in', 'asc')
             ->get();
         return view('admin.attendance.student', compact('attendances', 'date'));
     }
@@ -100,7 +100,7 @@ class AdminDashboardController extends Controller
     {
         $date = $request->input('date', Carbon::today('Africa/Lagos')->toDateString());
         $attendances = StaffAttendance::whereDate('date', $date)
-            ->orderBy('time_in', 'desc')
+            ->orderBy('time_in', 'asc')
             ->get();
         return view('admin.attendance.staff', compact('attendances', 'date'));
     }
