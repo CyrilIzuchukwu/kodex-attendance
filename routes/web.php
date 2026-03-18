@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 // QR Generator (teacher/admin)
 Route::get('/qr-generator', [AttendanceController::class, 'qrIndex'])->name('qr.index');
+
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('login');
 });
 
 // Student Attendance
