@@ -1,47 +1,66 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.app')
+@section('content')
+    <div class="account-content">
+        <div class="login-wrapper login-new">
+            <div class="row w-100">
+                <div class="col-lg-5 mx-auto">
+                    <div class="login-content user-login">
+                        <div class="login-logo">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="img" />
+                            <a href="javascript:void(0)" class="login-logo logo-white">
+                                <img src="{{ asset('assets/images/logo.png') }}" alt="Img" />
+                            </a>
+                        </div>
+                        <form action="{{ route('login') }}" method="POST">
+                            @csrf
+                            <div class="card">
+                                <div class="card-body p-5">
+                                    <div class="login-userheading">
+                                        <h3>Sign In</h3>
+                                        <h4>Access the Attendance Dashboard using your email and passcode.</h4>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            Email
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="email" id="email" name="email" value="{{ old('email') }}"
+                                                placeholder="Email" required autofocus class="form-control border-end-0" />
+                                            <span class="input-group-text border-start-0">
+                                                <i class="ti ti-mail"></i>
+                                            </span>
+                                        </div>
+                                        @error('email')
+                                            <span class="text-danger small mt-1 d-block">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            Password
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="pass-group">
+                                            <input type="password" id="password" name="password" placeholder="Password"
+                                                class="pass-input form-control" />
+                                            <span class="ti toggle-password ti-eye-off text-gray-9"></span>
+                                        </div>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+                                        @error('password')
+                                            <span class="text-danger small mt-1 d-block">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <div class="form-login">
+                                        <button type="submit" class="btn btn-login w-100">Sign In</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+@endsection

@@ -11,9 +11,9 @@
     <meta name="description" content=".">
     <meta name="keywords" content="">
     <meta name="robots" content="index, follow">
-    <title>Admin Dashboard </title>
+    <title>Admin Dashboard</title>
 
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
 
     <script src="{{asset('dashboard_assets/js/theme-script.js')}}" type=""></script>
 

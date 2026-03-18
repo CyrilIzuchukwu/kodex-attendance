@@ -70,6 +70,11 @@
                              <p>{{ ucfirst(auth()->user()->role) }}</p>
                          </div>
                      </div>
+                     <a class="dropdown-item" href="{{ route('admin.profile.index') }}">
+                         <i class="ti ti-user-circle me-2"></i>
+                         MyProfile
+                     </a>
+                    
                      <hr class="my-2">
                      <a class="dropdown-item logout pb-0" href="javascript:void(0)"
                          onclick="document.getElementById('logout-form').submit();"><i

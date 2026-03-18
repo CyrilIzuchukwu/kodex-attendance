@@ -83,10 +83,10 @@
 
 
                   <li class="submenu-open">
-                      <h6 class="submenu-hdr">Emails</h6>
+                      <h6 class="submenu-hdr">Profile</h6>
                       <ul>
-                          <li class="mb-1 ">
-                              <a href=""><i class="ti ti-mail-plus fs-16 me-2"></i><span>Compose Email</span></a>
+                          <li class="mb-1 {{ request()->routeIs('admin.profile.index') ? 'active' : '' }} ">
+                              <a href="{{ route('admin.profile.index') }}"><i class="ti ti-user fs-16 me-2"></i><span>Profile</span></a>
                           </li>
                       </ul>
                   </li>
