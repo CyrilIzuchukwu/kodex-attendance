@@ -11,7 +11,8 @@
                                 <img src="{{ asset('assets/images/logo.png') }}" alt="Img" />
                             </a>
                         </div>
-                        <form action="{{ route('login') }}" method="POST">
+                        <form action="{{ route('login') }}" method="POST" data-submit-spinner
+                            data-spinner-text="Authenticating...">
                             @csrf
                             <div class="card">
                                 <div class="card-body p-5">
